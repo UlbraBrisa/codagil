@@ -1,0 +1,288 @@
+
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Calculadora CLT x PJ - Contaágil</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      margin: 0;
+      padding: 20px;
+    }
+    .container {
+      max-width: 700px;
+      margin: auto;
+      background: white;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.1);
+    }
+    h1 {
+      text-align: center;
+      color: #2c3e50;
+    }
+    h2 {
+      color: #34495e;
+    }
+    label {
+      display: block;
+      margin-top: 15px;
+      font-weight: bold;
+    }
+    input[type="number"] {
+      width: 100%;
+      padding: 10px;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      margin-top: 5px;
+    }
+    input[type="checkbox"] {
+      margin-top: 10px;
+    }
+    button {
+      margin-top: 20px;
+      width: 100%;
+      padding: 12px;
+      font-size: 16px;
+      background-color: #27ae60;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #219950;
+    }
+    .result {
+      margin-top: 30px;
+      padding: 20px;
+      background-color: #e9f7ef;
+      border-left: 5px solid #28a745;
+      font-size: 16px;
+      color: #155724;
+    }
+    ul {
+      list-style-type: none;
+      padding-left: 0;
+    }
+    li {
+      margin-bottom: 10px;
+    }
+    .info-section {
+      margin-top: 40px;
+      background: #fff;
+      padding: 25px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.05);
+      line-height: 1.6;
+    }
+    .info-section h3 {
+      color: #2c3e50;
+    }
+    .info-section p {
+      margin-bottom: 15px;
+    }
+    footer {
+      margin-top: 50px;
+      text-align: center;
+      font-size: 14px;
+      color: #aaa;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <h1>Calculadora CLT x PJ</h1>
+
+  <!-- Campos de Entrada -->
+  <label>Salário Mensal Bruto:
+    <input type="number" id="salarioClt" placeholder="Digite o salário bruto CLT">
+  </label>
+
+  <label>Vale-refeição/alimentação (mensal) <span class="optional">(opcional)</span>:
+    <input type="number" id="valeRefeicao" placeholder="Ex: 800">
+  </label>
+
+  <label>Vale-transporte (mensal) <span class="optional">(opcional)</span>:
+    <input type="number" id="valeTransporte" placeholder="Ex: 200">
+  </label>
+
+  <label>Plano de saúde (mensal) <span class="optional">(opcional)</span>:
+    <input type="number" id="planoSaude" placeholder="Ex: 500">
+  </label>
+
+  <label>Outros benefícios (adicional anual) <span class="optional">(opcional)</span>:
+    <input type="number" id="outrosBeneficios" placeholder="Ex: 5000">
+  </label>
+
+  <label>Taxa de imposto para PJ (%) <span class="optional">(ex: 6% a 20%)</span>:
+    <input type="number" id="taxaImpostoPJ" value="16">
+  </label>
+
+  <label>Custo com contabilidade/mensal <span class="optional">(opcional)</span>:
+    <input type="number" id="custoContabilidade" value="500">
+  </label>
+
+  <label>
+    <input type="checkbox" id="contribuiInssPJ"> Contribuir com INSS como PJ?
+  </label>
+
+  <label>Percentual de aumento sugerido para PJ (%):
+    <input type="number" id="percentualAumentoPJ" value="30">
+  </label>
+
+  <button onclick="calcular()">Calcular</button>
+
+  <!-- Resultado -->
+  <div class="result" id="resultado"></div>
+
+  <!-- Informações explicativas -->
+  <div class="info-section">
+    <h3>O que é a Calculadora CLT x PJ?</h3>
+    <p>A <strong>Calculadora CLT x PJ</strong> é uma ferramenta essencial desenvolvida pela <strong>Contaágil</strong> para ajudar profissionais a entenderem qual regime de trabalho oferece maior vantagem financeira: CLT ou PJ.</p>
+
+    <h3>Para que serve?</h3>
+    <p>Essa calculadora permite comparar os ganhos líquidos entre os dois regimes, considerando salário bruto, descontos previdenciários, impostos, benefícios trabalhistas (como FGTS, 13º salário e férias), além de custos extras como plano de saúde e contabilidade.</p>
+
+    <h3>Vantagens de usar a Calculadora CLT x PJ</h3>
+    <ul>
+      <li><strong>Decisão informada:</strong> Compara CLT e PJ com dados reais e atualizados.</li>
+      <li><strong>Personalização:</strong> Inclui campos para vale-alimentação, plano de saúde, outros benefícios e percentuais de aumento PJ.</li>
+      <li><strong>Transparência:</strong> Mostra todos os descontos aplicáveis em cada regime.</li>
+      <li><strong>Ferramenta gratuita:</strong> Disponível online para uso imediato.</li>
+    </ul>
+
+    <p>Com base nesses cálculos, você pode tomar uma decisão mais estratégica sobre sua forma de atuação, seja como funcionário CLT ou autônomo PJ.</p>
+  </div>
+
+  <footer>
+    &copy; 2025 <a href="https://www.contaagil.com/ " target="_blank" style="color:#27ae60;">Contaágil</a> | Calculadora CLT x PJ  1.1- Alessndro - Paloma - Kevin -Thiago - Laura
+  </footer>
+</div>
+
+<script>
+  function calcular() {
+    const salarioCltBruto = parseFloat(document.getElementById('salarioClt').value);
+    const valeRefeicao = parseFloat(document.getElementById('valeRefeicao').value) || 0;
+    const valeTransporte = parseFloat(document.getElementById('valeTransporte').value) || 0;
+    const planoSaude = parseFloat(document.getElementById('planoSaude').value) || 0;
+    const outrosBeneficios = parseFloat(document.getElementById('outrosBeneficios').value) || 0;
+    const taxaImpostoPJPercent = parseFloat(document.getElementById('taxaImpostoPJ').value) || 16;
+    const custoContabilidade = parseFloat(document.getElementById('custoContabilidade').value) || 500;
+    const contribuiInssPJ = document.getElementById('contribuiInssPJ').checked;
+    const percentualAumentoPJ = parseFloat(document.getElementById('percentualAumentoPJ').value) || 30;
+
+    if (isNaN(salarioCltBruto) || salarioCltBruto <= 0) {
+      alert('Por favor, insira um salário válido.');
+      return;
+    }
+
+    // Cálculo do INSS na CLT
+    let inss = 0;
+    if (salarioCltBruto <= 1302.00) {
+      inss = salarioCltBruto * 0.075;
+    } else if (salarioCltBruto <= 2571.29) {
+      inss = salarioCltBruto * 0.09 - 19.53;
+    } else if (salarioCltBruto <= 3856.94) {
+      inss = salarioCltBruto * 0.12 - 96.67;
+    } else if (salarioCltBruto <= 7507.49) {
+      inss = salarioCltBruto * 0.14 - 174.08;
+    } else {
+      inss = 7507.49 * 0.14 - 174.08;
+    }
+
+    // Cálculo do IRRF
+    const salarioBase = salarioCltBruto - inss;
+    let irrf = 0;
+    if (salarioBase <= 1903.98) {
+      irrf = 0;
+    } else if (salarioBase <= 2826.65) {
+      irrf = salarioBase * 0.075 - 142.80;
+    } else if (salarioBase <= 3751.05) {
+      irrf = salarioBase * 0.15 - 354.80;
+    } else if (salarioBase <= 4664.68) {
+      irrf = salarioBase * 0.225 - 636.13;
+    } else {
+      irrf = salarioBase * 0.275 - 869.36;
+    }
+
+    // Descontos dos benefícios
+    const descontoValeTransporte = valeTransporte * 0.06; // 6%
+    const descontoValeRefeicao = valeRefeicao * 0.20;     // até 20%
+
+    // Salário líquido CLT
+    const salarioLiquidoClt = salarioCltBruto - inss - irrf - descontoValeTransporte - descontoValeRefeicao;
+
+    // Benefícios totais mensais
+    const totalBeneficiosClt = valeRefeicao + valeTransporte + planoSaude + outrosBeneficios;
+    const totalLiquidoCltMensal = salarioLiquidoClt + (totalBeneficiosClt / 12);
+
+    // Cálculo para PJ
+    const taxaImpostoPJ = taxaImpostoPJPercent / 100;
+    const salarioPjBruto = salarioCltBruto * (1 + percentualAumentoPJ / 100);
+    const impostosPJ = salarioPjBruto * taxaImpostoPJ;
+
+    let inssPJ = 0;
+    if (contribuiInssPJ) {
+      const tetoInss = 7507.49;
+      const salarioBaseInssPJ = Math.min(salarioPjBruto, tetoInss);
+      inssPJ = salarioBaseInssPJ * 0.11;
+    }
+
+    const salarioLiquidoPj = salarioPjBruto - impostosPJ - inssPJ - custoContabilidade;
+
+    // Exibir resultados formatados
+    document.getElementById('resultado').innerHTML = `
+      <h2>Resultados:</h2>
+      <p><strong>CLT:</strong></p>
+      <ul>
+        <li>Salário Bruto: R$ ${salarioCltBruto.toFixed(2)}</li>
+        <li>INSS: R$ ${inss.toFixed(2)}</li>
+        <li>IRRF: R$ ${irrf.toFixed(2)}</li>
+        <li>Vale-transporte: R$ ${valeTransporte.toFixed(2)} (Desconto: R$ ${descontoValeTransporte.toFixed(2)})</li>
+        <li>Vale-refeição: R$ ${valeRefeicao.toFixed(2)} (Desconto: R$ ${descontoValeRefeicao.toFixed(2)})</li>
+        <li>Plano de Saúde: R$ ${planoSaude.toFixed(2)}</li>
+        <li>Outros Benefícios: R$ ${outrosBeneficios.toFixed(2)}</li>
+        <li><strong>Salário Líquido Mensal:</strong> R$ ${salarioLiquidoClt.toFixed(2)}</li>
+      </ul>
+
+      <p><strong>PJ:</strong></p>
+      <ul>
+        <li>Salário Bruto PJ (${percentualAumentoPJ}% maior que CLT): R$ ${salarioPjBruto.toFixed(2)}</li>
+        <li>Impostos PJ (${taxaImpostoPJPercent}%): R$ ${impostosPJ.toFixed(2)}</li>
+        ${contribuiInssPJ ? `<li>INSS PJ: R$ ${inssPJ.toFixed(2)}</li>` : ''}
+        <li>Custo com Contabilidade: R$ ${custoContabilidade.toFixed(2)}</li>
+        <li><strong>Salário Líquido PJ:</strong> R$ ${salarioLiquidoPj.toFixed(2)}</li>
+      </ul>
+
+      <p><strong>Comparação:</strong></p>
+      <ul>
+        <li><strong>Salário Líquido CLT + Benefícios:</strong> R$ ${totalLiquidoCltMensal.toFixed(2)}</li>
+        <li><strong>Salário Líquido PJ:</strong> R$ ${salarioLiquidoPj.toFixed(2)}</li>
+      </ul>
+    `;
+  }
+</script>
+
+
+
+  <!-- Botão WhatsApp -->
+    <div class="whatsapp-section">
+        <a href="https://wa.me/5551992731930 " target="_blank" class="whatsapp-button">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg " alt="WhatsApp Logo">
+            💬 Fale com a gente no WhatsApp
+        </a>
+    </div>
+</div>
+
+
+
+
+</body>
+</html>
