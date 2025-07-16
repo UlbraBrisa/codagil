@@ -57,7 +57,7 @@ Aqui está o seu código com **apenas uma alteração**: **todo o texto do site 
         button {
             margin-top: 20px;
             padding: 12px 20px;
-            background-color: #007BFF;
+            background-color: #FF9900;
             color: white;
             border: none;
             border-radius: 5px;
