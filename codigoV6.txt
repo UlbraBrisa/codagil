@@ -1,5 +1,4 @@
-Atualização geral do projeto V6, o Corsário passou aqui ⚓
-```html
+Atualização geral do projeto V6.1, o Corsário passou aqui ⚓
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
