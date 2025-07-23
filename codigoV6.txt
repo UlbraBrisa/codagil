@@ -1,5 +1,4 @@
-Aqui está o seu código com **apenas uma alteração**: **todo o texto do site agora é exibido em preto (`#000`)**, sem outras modificações.
-
+Atualização geral do projeto V6, o Corsário passou aqui ⚓
 ```html
 <!DOCTYPE html>
 <html lang="pt-BR">
